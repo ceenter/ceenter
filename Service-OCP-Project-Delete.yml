@@ -1,0 +1,9 @@
+---
+- name: Delete an OCP Project
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    state: absent
+  roles:
+    - name: ocp_project

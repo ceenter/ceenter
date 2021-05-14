@@ -1,0 +1,11 @@
+---
+
+- name: "Manage project {{ ocp_project_name }}"
+  k8s:
+    state: "{{ state }}"
+    host: "{{ ocp_host }}"
+    api_key: "{{ ocp_api_key }}"
+    validate_certs: false
+    definition: "{{ lookup('template', 'project.yml.j2') | from_yaml }}"
+
+...

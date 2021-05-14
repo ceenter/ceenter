@@ -1,0 +1,4 @@
+---
+# Internal variable
+ocp_project_description: "Project requested by {{ ocp_project_requestor_email }}"
+...
