@@ -17,11 +17,28 @@
             - [Use awx cli tool](#use-awx-cli-tool)
             - [Setup Job Templates](#setup-job-templates)
                 - [Create GCP VM](#create-gcp-vm)
-    - [OpenShift setup](#openshift-setup)
+                - [Create OCP Project](#create-ocp-project)
+                - [Delete OCP Project](#delete-ocp-project)
+    - [Environment Setup](#environment-setup)
+        - [OpenShift setup](#openshift-setup)
     - [Api Caller](#api-caller)
         - [Example API Call to Ansible Tower](#example-api-call-to-ansible-tower)
 
 <!-- markdown-toc end -->
+
+Ceenter is a project to demonstrate Ansible Tower IaaS capabilities.
+
+Following scenarios are implemented:
+
+- RHV VM
+  - Create
+  - Delete
+- GCP VM
+  - Create
+  - Delete
+- OpenShift Project
+  - Create
+  - Delete
 
 ## Ansible naming convention ##
 
@@ -174,6 +191,43 @@ Create Survey for Job Template:
 Parameters: {"vm_name":"mytest","vm_flavor":"Small","vm_memory":2,"vm_cpu":1,"vm_disk_size":20}
 ```
 
+##### Create OCP Project #####
+
+```yaml
+name: OCP Project Create
+description: Create OCP Project
+job_type: Run
+inventory: localhost
+project: Ceenter Repo
+Playbook: Service-OCP-Project-Create.yml
+credentials: ['Ceenter OCP Project Manager']
+instance_group: Container with [openshift pip dependencies](https://github.com/ceenter/ansible-runner-images)
+```
+
+Create Survey for Job Template:
+
+```yaml
+Parameters: {"ocp_project_name":"ceenter_test","ocp_project_display_name":"Test project for Ceenter"}
+```
+
+##### Delete OCP Project #####
+
+```yaml
+name: OCP Project Delete
+description: Delete OCP Project
+job_type: Run
+inventory: localhost
+project: Ceenter Repo
+Playbook: Service-OCP-Project-Delete.yml
+credentials: ['Ceenter OCP Project Manager']
+instance_group: Container with [openshift pip dependencies](https://github.com/ceenter/ansible-runner-images)
+```
+
+Create Survey for Job Template:
+
+```yaml
+Parameters: {"ocp_project_name":"ceenter_test"}
+```
 
 ## Environment Setup ##
 

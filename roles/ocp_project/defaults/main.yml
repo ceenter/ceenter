@@ -1,0 +1,5 @@
+---
+ocp_project_state: present
+ocp_project_display_name: ""
+ocp_project_requestor_email: "{{ tower_user_email | default('default@redhat.com') }}"
+...
